@@ -1,0 +1,6 @@
+.env
+.env.example
+.gitignore
+MEMORY.md
+node_modules/
+src/
