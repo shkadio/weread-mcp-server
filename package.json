@@ -11,11 +11,10 @@
     "vercel-dev": "vercel dev",
     "deploy": "vercel --prod"
   },
-  "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.8.0",
-    "dotenv": "^17.4.2"
-  },
+  "dependencies": {},
   "devDependencies": {
+    "@modelcontextprotocol/sdk": "^1.8.0",
+    "dotenv": "^17.4.2",
     "@types/node": "^22.0.0",
     "tsx": "^4.19.0",
     "typescript": "^5.7.0"
