@@ -396,7 +396,7 @@ async function handleMcpMessage(msg: any): Promise<any> {
 export default async function handler(req: any, res: any) {
   // CORS
   res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") {
@@ -404,8 +404,30 @@ export default async function handler(req: any, res: any) {
     return;
   }
 
-  if (req.method !== "POST") {
-    res.status(405).json({ error: "Method not allowed" });
+  // GET — 欢迎页面
+  if (req.method === "GET") {
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    res.status(200).end(`
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><title>WeRead MCP Server</title>
+<style>
+  body { font-family: -apple-system, sans-serif; max-width: 600px; margin: 80px auto; padding: 0 20px; text-align: center; }
+  h1 { color: #07c160; }
+  .status { background: #f0fdf4; border: 1px solid #86efac; border-radius: 12px; padding: 20px; margin: 20px 0; }
+  .url { background: #f5f5f5; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 14px; }
+</style></head>
+<body>
+  <h1>✅ 部署成功</h1>
+  <div class="status">
+    <p>WeRead MCP 服务器运行正常</p>
+    <p>🛠 共 17 个工具可用</p>
+  </div>
+  <p>在 Dify 中配置 MCP：</p>
+  <div class="url">https://${req.headers.host}/api/mcp</div>
+  <p style="color:#888;margin-top:40px;font-size:14px">类型选 HTTP，不需要认证</p>
+</body>
+</html>`);
     return;
   }
 

@@ -6,5 +6,9 @@
     "api/mcp.ts": {
       "maxDuration": 60
     }
-  }
+  },
+  "routes": [
+    { "src": "/", "dest": "/api/mcp" },
+    { "src": "/api/mcp", "dest": "/api/mcp" }
+  ]
 }
