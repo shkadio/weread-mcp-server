@@ -329,9 +329,11 @@ async function handleToolCall(
       data = await callWeRead("/book/recommend", { count: args.count ?? 12, maxIdx: args.maxIdx ?? 0 });
       break;
     case "weread_similar_books": {
-      const sb: Record<string, unknown> = { bookId: args.bookId };
-      if (args.count !== undefined) sb.count = args.count;
-      if (args.maxIdx !== undefined) sb.maxIdx = args.maxIdx;
+      const sb: Record<string, unknown> = {
+        bookId: args.bookId,
+        maxIdx: args.maxIdx ?? 0,
+        count: args.count ?? 12,
+      };
       if (args.sessionId !== undefined) sb.sessionId = args.sessionId;
       data = await callWeRead("/book/similar", sb);
       break;
